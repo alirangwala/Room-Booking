@@ -20,13 +20,16 @@ export class BookingsController {
 
   @Post()
   create(@Body() body: any) {
-    return this.bookingsService.create(body)
+    if(body) {
+      return this.bookingsService.create(body)
+    }
+    return false;
   }
 
-  @Put(':id')
-  update(@Param('id') id: number, @Body() body: any) {
-    return this.bookingsService.update(id, body)
-  }
+  // @Put(':id')
+  // update(@Param('id') id: number, @Body() body: any) {
+  //   return this.bookingsService.update(id, body)
+  // }
 
   @Delete(':id')
   delete(@Param('id') id: number) {

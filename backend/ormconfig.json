@@ -8,7 +8,7 @@
   "entities": ["src/**/*.entity.ts"],
   "synchronize": false,
   "migrationsTableName": "migrations",
-  "migrations": ["src/**/*.entity.ts"],
+  "migrations": ["src/database/migrations/*.ts"],
   "cli": {
     "migrationsDir": "src/database/migrations"
   }

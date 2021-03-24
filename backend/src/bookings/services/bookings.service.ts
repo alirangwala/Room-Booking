@@ -19,9 +19,13 @@ export class BookingsService {
     return this.BookingsRepo.findOne(id)
   }
 
-  create(body:any) {
-    const newBooking = this.BookingsRepo.create(body)
-    return this.BookingsRepo.save(newBooking);
+  async create(body:any) {
+    const available = await this.BookingsRepo.findOne({room: body.room, apt_time: body.apt_time})
+    if(!available){
+      const newBooking = this.BookingsRepo.create(body)
+      return this.BookingsRepo.save(newBooking);
+    }
+    return false;
   }
 
   async update(id:number, body:any) {
