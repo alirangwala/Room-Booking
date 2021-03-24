@@ -1,27 +1,26 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { BookingsModule } from './bookings/bookings.module';
-import { BookingsService } from './bookings/services/bookings.service';
-import { BookingsController } from './bookings/controllers/bookings.controller';
 import * as dotenv from "dotenv";
 
 @Module({
   imports: [
     TypeOrmModule.forRoot({
     type: 'postgres',
-    host: process.env.DB_HOST,
+    host: 'localhost',
     port: 5432,
-    username: process.env.DB_USER,
-    password: process.env.DB_PASS,
-    database: process.env.DB_NAME,
+    username: 'ali',
+    password: 'postgres',
+    database: 'my_db',
     entities: ['dist/**/*.entity{.ts,.js'],
+    autoLoadEntities: true,
     synchronize: false,
     retryDelay: 3000,
-    retryAttempts:10
+    retryAttempts:2
   }),
   BookingsModule
 ],
-  controllers: [BookingsController],
-  providers: [BookingsService],
+  controllers: [],
+  providers: [],
 })
 export class AppModule {}

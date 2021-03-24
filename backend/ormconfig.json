@@ -1,0 +1,15 @@
+{
+  "type": "postgres",
+  "host": "localhost",
+  "port": 5432,
+  "username": "ali",
+  "password": "postgres",
+  "database": "my_db",
+  "entities": ["src/**/*.entity.ts"],
+  "synchronize": false,
+  "migrationsTableName": "migrations",
+  "migrations": ["src/**/*.entity.ts"],
+  "cli": {
+    "migrationsDir": "src/database/migrations"
+  }
+}

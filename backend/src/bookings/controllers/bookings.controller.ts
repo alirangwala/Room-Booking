@@ -8,7 +8,7 @@ export class BookingsController {
     private bookingsService: BookingsService
   ) {}
 
-  @Get('filter')
+  @Get()
   getAll() {
     return this.bookingsService.findAll()
   }

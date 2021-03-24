@@ -4,10 +4,10 @@ services:
   database:
     image: postgres:13
     environment:
-      - POSTGRES_DB=my_db
       - POSTGRES_USER=ali
-      - POSTGRES_PASSWORD=password
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=my_db
     ports:
       - '5432:5432'
     volumes:
-      - ./postgres_data/:/var/lib/postgresql
+      - ./postgres_data:/var/lib/postgresqlpsql -h localhost -d my_db -U ali

@@ -1,14 +1,14 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { Booking } from './../entities/bookings.entity'
+import { Booking } from '../entities/bookings.entity'
 
 
 @Injectable()
 export class BookingsService {
 
   constructor(
-    @InjectRepository(Booking) private BookingsRepo: Repository<Booking>
+    @InjectRepository(Booking) private BookingsRepo: Repository<Booking>,
   ){}
 
   findAll() {
@@ -20,12 +20,7 @@ export class BookingsService {
   }
 
   create(body:any) {
-    const newBooking = this.BookingsRepo.create({
-      name: body.name,
-      room: body.room,
-      start: body.start,
-      end: body.end
-    })
+    const newBooking = this.BookingsRepo.create(body)
     return this.BookingsRepo.save(newBooking);
   }
 

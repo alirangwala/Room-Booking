@@ -1,4 +1,4 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn } from 'typeorm';
 
 @Entity()
 export class Booking {
@@ -12,10 +12,24 @@ export class Booking {
   room: string;
 
   @Column()
-  start: string;
+  apptTime: number;
 
-  @Column()
-  end: string;
+  // @Column()
+  // end: string;
+
+  // @CreateDateColumn({
+  //   name: 'created_at',
+  //   type: 'timestamp',
+  //   default: ()=> 'CURRENT_TIMESTAMP'
+  // })
+  // createdAt: Date;
+
+  // @UpdateDateColumn({
+  //   name: 'updated_at',
+  //   type: 'timestamp',
+  //   default: ()=> 'CURRENT_TIMESTAMP'
+  // })
+  // updatedAt: Date;
 
   @Column({ default: true })
   isActive: boolean;
