@@ -1,0 +1,22 @@
+{
+  "name": "room-booking",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "setup-db": "cd backend && docker-compose up -d database && npm run migrations:run",
+    "start-backend": "cd backend && npm run build && npm run start",
+    "start-frontend": "cd frontend && npm run build && npm run start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alirangwala/Room-Booking.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alirangwala/Room-Booking/issues"
+  },
+  "homepage": "https://github.com/alirangwala/Room-Booking#readme"
+}
