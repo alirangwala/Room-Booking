@@ -4,7 +4,7 @@ import axios from "axios";
 import "./App.css";
 
 function MakeBooking({ bookings, setBookings }) {
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, errors } = useForm();
 
   const addBooking = (newBooking) => {
     let update = true;
@@ -29,7 +29,7 @@ function MakeBooking({ bookings, setBookings }) {
           console.log("createdBooking", createdBooking);
           if (!createdBooking) {
             setBookings([...bookings, newBooking]);
-            alert("The Room is occupied at this timeYOYO");
+            alert("The Room is occupied at this time");
           } else {
             setBookings([...bookings, createdBooking]);
           }
@@ -45,33 +45,53 @@ function MakeBooking({ bookings, setBookings }) {
   return (
     <div>
       <form onSubmit={handleSubmit(addBooking)}>
-        <label> Name </label>
-        <input
-          type="text"
-          ref={register}
-          name="username"
-          placeholder="Name here"
-        />
-        <label> Room </label>
-        <select ref={register} name="room">
-          {oneToTen.map((num, i) => {
-            return <option key={i} value={`C${num}`}>{`C${num}`}</option>;
-          })}
-          {oneToTen.map((num, i) => {
-            return <option key={i} value={`P${num}`}>{`P${num}`}</option>;
-          })}
-        </select>
-        <label> Time </label>
-        <select ref={register} name="apt_time">
-          {times.map((time, i) => {
-            return (
-              <option key={i} value={time}>
-                {time}
-              </option>
-            );
-          })}
-        </select>
-        <input type="submit" />
+        <div className="form">
+          <label> Name </label>
+          <input
+            type="text"
+            ref={register({ required: true, minLength: 1, maxLength: 7 })}
+            name="username"
+            placeholder="Name here"
+          />
+        </div>
+        {console.log(errors)}
+        <div>
+          {errors.username && errors.username.type === "required" && (
+            <p className="error-message">This is required</p>
+          )}
+          {errors.username && errors.username.type === "maxLength" && (
+            <p className="error-message">
+              Name must be between 1 and 7 characters
+            </p>
+          )}
+        </div>
+        <div className="form">
+          <label> Room </label>
+          <select ref={register} name="room">
+            {oneToTen.map((num, i) => {
+              return <option key={i} value={`C${num}`}>{`C${num}`}</option>;
+            })}
+            {oneToTen.map((num, i) => {
+              return <option key={i} value={`P${num}`}>{`P${num}`}</option>;
+            })}
+          </select>
+        </div>
+        <div className="form">
+          <label> Time </label>
+          <select ref={register} name="apt_time">
+            {times.map((time, i) => {
+              return (
+                <option key={i} value={time}>
+                  {time}
+                </option>
+              );
+            })}
+          </select>
+        </div>
+        <br />
+        <div className="form">
+          <input type="submit" />
+        </div>
       </form>
     </div>
   );

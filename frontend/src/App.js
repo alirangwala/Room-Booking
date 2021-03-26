@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import MakeBooking from "./MakeBooking.js";
 import CurrentBookings from "./CurrentBookings.js";
 import "./App.css";
